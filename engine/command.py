@@ -50,7 +50,7 @@ def TakeCommand():
         print(f"User said : {query}")
         # Displaying it in app
         eel.DisplayMessage(query)
-        time.sleep(2)
+        time.sleep(4)
         
     except Exception as e:
         return ""
@@ -66,7 +66,7 @@ def AllCommands():
         from engine.features import OpenCommand
         OpenCommand(query1)
 
-    elif "on youtube":
+    elif "on youtube" in query1:
         from engine.features import PlayYoutube
         PlayYoutube(query1)
 

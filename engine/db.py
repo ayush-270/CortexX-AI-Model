@@ -21,4 +21,38 @@ cursor = conn.cursor()
 # cursor.execute(query)
 
 
+query = "UPDATE web_command SET name='facebook' WHERE path ='https://www.facebook.com/'"
+cursor.execute(query)
+
+
 conn.commit()
+
+# app_name = query.strip()
+
+# if app_name != "":
+#     try :
+#         cursor.execute(
+#         "SELECT path FROM sys_command WHERE name IN (?)",(app_name,))
+#         results = cursor.fetchall()
+
+#         if len(results) != 0:
+#             speak("Opening "+query)
+#             os.startfile(results[0][0])
+
+#         elif len(results) == 0:
+#             cursor.execute("SELECT url FROM web_command WHERE name IN (?)",(app_name,))
+#             results = cursor.fetchall()
+
+#             if len(results) != 0:
+#                 speak("Opening "+query)
+#                 webbrowser.open(results[0][0])
+
+#             else:
+#                 speak("Opening "+query)
+#                 try:
+#                     os.system("start "+query)
+#                 except:
+#                     speak("not found")
+#     except:
+#         speak("Soemthing went wrong")
+
