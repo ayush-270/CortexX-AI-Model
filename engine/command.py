@@ -2,6 +2,8 @@ import pyttsx3
 import speech_recognition as sr 
 import pyaudio as audio
 import eel
+import time
+
 
 
 # Creating the function to make the assistant speak
@@ -11,14 +13,13 @@ def speak(text):
 
     #getting the voices our system has.
     voices = engine.getProperty('voices')
-    print(voices)
 
     #Selecting the voice
     engine.setProperty('voice', voices[0].id)
 
     #Specifying the auido rate
     engine.setProperty('rate', 174)
-
+    eel.DisplayMessage(text)
     # Initiating it to speak.
     engine.say(text)
     engine.runAndWait()
@@ -49,10 +50,29 @@ def TakeCommand():
         print(f"User said : {query}")
         # Displaying it in app
         eel.DisplayMessage(query)
-        speak(query)
-        eel.DisplayHood()
+        time.sleep(2)
+        
     except Exception as e:
         return ""
     
     return query.lower()
+
+@eel.expose
+def AllCommands():
+    query1 = TakeCommand()
+    print(query1)
+
+    if "open" in query1:
+        from engine.features import OpenCommand
+        OpenCommand(query1)
+
+    elif "on youtube":
+        from engine.features import PlayYoutube
+        PlayYoutube(query1)
+
+    else:
+        print("not running")
+
+
+    eel.DisplayHood()
 
