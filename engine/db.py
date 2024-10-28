@@ -1,6 +1,7 @@
+import csv
 import sqlite3
 
-conn = sqlite3.connect("cortix.db")
+conn = sqlite3.connect("cortex.db")
 
 cursor = conn.cursor()
 
@@ -21,38 +22,36 @@ cursor = conn.cursor()
 # cursor.execute(query)
 
 
-query = "UPDATE web_command SET name='facebook' WHERE path ='https://www.facebook.com/'"
-cursor.execute(query)
+# query = "UPDATE web_command SET name='facebook' WHERE path ='https://www.facebook.com/'"
+# cursor.execute(query)
 
 
-conn.commit()
+# conn.commit()
 
-# app_name = query.strip()
+# Create a table with the desired columns
+# cursor.execute(
+#     '''CREATE TABLE IF NOT EXISTS contacts (id integer primary key, name VARCHAR(200), 
+#     mobile_no VARCHAR(255), email VARCHAR(255) NULL)''')
 
-# if app_name != "":
-#     try :
-#         cursor.execute(
-#         "SELECT path FROM sys_command WHERE name IN (?)",(app_name,))
-#         results = cursor.fetchall()
 
-#         if len(results) != 0:
-#             speak("Opening "+query)
-#             os.startfile(results[0][0])
+# Specify the column indices you want to import (0-based index)
+# Example: Importing the 1st and 3rd columns
+desired_columns_indices = [0, 18]
 
-#         elif len(results) == 0:
-#             cursor.execute("SELECT url FROM web_command WHERE name IN (?)",(app_name,))
-#             results = cursor.fetchall()
+# Read data from CSV and insert into SQLite table for the desired columns
+# with open('contacts.csv', 'r', encoding='utf-8') as csvfile:
+#     csvreader = csv.reader(csvfile)
+#     for row in csvreader:
+#         selected_data = [row[i] for i in desired_columns_indices]
+#         cursor.execute(''' INSERT INTO contacts (id, 'name', 'mobile_no') VALUES (null, ?, ?);''', tuple(selected_data))
 
-#             if len(results) != 0:
-#                 speak("Opening "+query)
-#                 webbrowser.open(results[0][0])
+# # Commit changes and close connection
+# conn.commit()
+# conn.close()
 
-#             else:
-#                 speak("Opening "+query)
-#                 try:
-#                     os.system("start "+query)
-#                 except:
-#                     speak("not found")
-#     except:
-#         speak("Soemthing went wrong")
+query = 'mummy'
+query = query.strip().lower()
 
+cursor.execute("SELECT mobile_no FROM contacts WHERE LOWER(name) LIKE ? OR LOWER(name) LIKE ?", ('%' + query + '%', query + '%'))
+results = cursor.fetchall()
+print(results[0][0])

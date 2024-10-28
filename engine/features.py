@@ -1,16 +1,21 @@
 import re
 import sqlite3
+import struct
 import webbrowser
-from playsound import playsound
 from engine.configs import *
-from engine.command import *
+from playsound import playsound
 import eel 
 import os
 import pywhatkit as kit
+import pvporcupine 
+import pyaudio
+from engine.command import *
 from engine.command import speak
+from engine.helper import extract_yt_term
+
 
 # connecting to db  
-conn = sqlite3.connect("cortix.db")
+conn = sqlite3.connect("cortex.db")
 cursor = conn.cursor()
 
 
@@ -28,7 +33,6 @@ def OpenCommand(query):
     query.lower()
     
     app_name = query.strip()
-    app_name = app_name.capitalize()
 
     if app_name != "":
         try :
@@ -67,15 +71,45 @@ def PlayYoutube(query):
     kit.playonyt(search_term)
 
 
-# Function to get the query for youtube.
-@eel.expose
-def extract_yt_term(command):
-    #defining a expression to get the yt command
-    pattern = r"play\s+(.*?)\s+on\s+youtube"
-    # using re.search to find the command in the query
-    match = re.search( pattern , command , re.IGNORECASE )
-    # if found the match return the extracted song/video
-    return match.group(1) if match else None
+# Creating function for the hotword detection 
+def hotword():
+    porcupine = None
+    paud = None
+    audio_stream = None
+    try:
+        # using pre trained keywords
+        porcupine = pvporcupine.create( keywords = ["jarvis", "alexa"])
+        paud = pyaudio.PyAudio()
+        audio_stream=paud.open(rate=porcupine.sample_rate,channels=1,format=pyaudio.paInt16,input=True,frames_per_buffer=porcupine.frame_length)
+
+        # Loop fpr Streaming
+        while True:
+            keyword = audio_stream.read(porcupine.frame_length)
+            keyword = struct.unpack_from("h"*porcupine.frame_length,keyword)
+
+            # processing keywords coming from mic 
+            keyword_index = porcupine.process(keyword)
+
+            #checking first keyword detected or not. 
+            if keyword_index >= 0 :
+                print("Hotword detected")
+
+                #pressing shortcut key i.e Win + C virtually.
+                import pyautogui as autogui
+                autogui.keyDown("win")
+                autogui.press("c")
+                time.sleep(2)
+                autogui.keyUp("win")
+
+    except:
+        if porcupine is not None:
+            porcupine.delete()
+        if audio_stream is not None:
+            audio_stream.close()
+        if paud is not None:
+            paud.terminate()
+
+
 
 
 

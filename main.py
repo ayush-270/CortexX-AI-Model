@@ -4,14 +4,15 @@ import eel
 from engine.features import *
 from engine.command import *
 
-eel.init("www")
+def start () :
+    eel.init("www")
 
-''' Creating app mode for the AI
-Initialiasing MS browser to open our index.html file. '''
+    ''' Creating app mode for the AI
+    Initialiasing MS browser to open our index.html file. '''
 
 
-playAssistantSound()
+    playAssistantSound()
 
-os.system('start Chrome.exe --app = "http://localhost:8000/index.html"')
+    os.system('start Chrome.exe --app = "http://localhost:8000/index.html"')
 
-eel.start("index.html", block = True)
+    eel.start("index.html", block = True) 

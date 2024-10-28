@@ -24,9 +24,9 @@ $(document).ready(function () {
     autostart : true,
     });
 
-    // CortixX message Animation 
+    // CortexX message Animation 
 
-    $('.cortixX-message').textillate({
+    $('.cortexX-message').textillate({
 
         loop : true,
         sync : true,
@@ -48,4 +48,18 @@ $(document).ready(function () {
         $("#SiriWave").attr("hidden", false );
         eel.AllCommands()()
     });
+
+
+    // Creating keyboard shortcut to make our ai run.
+
+    function DocKeyUp(e){
+        if( e.key === 'c' && e.metaKey ){
+            eel.playAssistantSound()
+            $("#Oval").attr("hidden", true );
+            $("#SiriWave").attr("hidden", false );
+            eel.AllCommands()()
+            
+        }
+    }
+    document.addEventListener('keyup', DocKeyUp , false);
 });

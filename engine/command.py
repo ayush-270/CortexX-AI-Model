@@ -25,7 +25,7 @@ def speak(text):
     engine.runAndWait()
 
 # checking the function.
-# speak("Hey there this is you cortix ai")
+# speak("Hey there this is you cortex ai")
 
 # Creating the function for speech recognition.
 @eel.expose
@@ -59,19 +59,23 @@ def TakeCommand():
 
 @eel.expose
 def AllCommands():
-    query1 = TakeCommand()
-    print(query1)
+    try:
+        query1 = TakeCommand()
+        print(query1)
 
-    if "open" in query1:
-        from engine.features import OpenCommand
-        OpenCommand(query1)
+        if "open" in query1:
+            from engine.features import OpenCommand
+            OpenCommand(query1)
 
-    elif "on youtube" in query1:
-        from engine.features import PlayYoutube
-        PlayYoutube(query1)
+        elif "on youtube" in query1:
+            from engine.features import PlayYoutube
+            PlayYoutube(query1)
 
-    else:
-        print("not running")
+        else:
+            print("not running")
+
+    except:
+        print("error")
 
 
     eel.DisplayHood()
