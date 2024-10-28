@@ -1,1 +1,1 @@
-Assistant_Name = "cortix"
+Assistant_Name = "cortex"

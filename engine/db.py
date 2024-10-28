@@ -45,13 +45,16 @@ desired_columns_indices = [0, 18]
 #         selected_data = [row[i] for i in desired_columns_indices]
 #         cursor.execute(''' INSERT INTO contacts (id, 'name', 'mobile_no') VALUES (null, ?, ?);''', tuple(selected_data))
 
-# # Commit changes and close connection
+# Commit changes and close connection
 # conn.commit()
 # conn.close()
 
-query = 'mummy'
+query = 'papa'
 query = query.strip().lower()
 
 cursor.execute("SELECT mobile_no FROM contacts WHERE LOWER(name) LIKE ? OR LOWER(name) LIKE ?", ('%' + query + '%', query + '%'))
 results = cursor.fetchall()
 print(results[0][0])
+
+# cursor.execute("DELETE FROM contacts")
+conn.commit()
