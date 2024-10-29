@@ -22,6 +22,9 @@ def speak(text):
     eel.DisplayMessage(text)
     # Initiating it to speak.
     engine.say(text)
+
+    #Displaying the query in chatbox
+    eel.receiverText(text)
     engine.runAndWait()
 
 # checking the function.
@@ -58,10 +61,22 @@ def TakeCommand():
     return query.lower()
 
 @eel.expose
-def AllCommands():
-    try:
+def AllCommands(message=1):
+    # Checking if the message is passed or not
+    # if it is not passed (i.e message == 1) then taking value from mic. i.e takecommand().
+    if message == 1:
         query1 = TakeCommand()
         print(query1)
+
+        #Displaying the query in chatbox
+        eel.senderText(query1)
+    # if it is passed assigning to the variable query1 for execution.
+    else:
+        query1 = message
+
+        #Displaying the query in chatbox
+        eel.senderText(query1)
+    try:
 
         if "open" in query1:
             from engine.features import OpenCommand

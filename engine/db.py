@@ -15,8 +15,8 @@ cursor = conn.cursor()
 #query = "CREATE TABLE IF NOT EXISTS web_command(id integer primary key,name VARCHAR(100),path VARCHAR(1000))"
 #cursor.execute(query)
 
-# query = "INSERT INTO sys_command VALUES (NULL, 'Spotify', 'C:\\Users\\hp\\AppData\\Roaming\\Spotify\\Spotify.exe')"
-# cursor.execute(query)
+query = "INSERT INTO sys_command VALUES (NULL, 'notepad', 'C:\\Windows\\system32\\notepad.exe')"
+cursor.execute(query)
 
 # query = "INSERT INTO web_command VALUES (NULL, 'Facebook', 'https://www.facebook.com/')"
 # cursor.execute(query)
@@ -49,12 +49,12 @@ desired_columns_indices = [0, 18]
 # conn.commit()
 # conn.close()
 
-query = 'papa'
-query = query.strip().lower()
+# query = 'papa'
+# query = query.strip().lower()
 
-cursor.execute("SELECT mobile_no FROM contacts WHERE LOWER(name) LIKE ? OR LOWER(name) LIKE ?", ('%' + query + '%', query + '%'))
-results = cursor.fetchall()
-print(results[0][0])
+# cursor.execute("SELECT mobile_no FROM contacts WHERE LOWER(name) LIKE ? OR LOWER(name) LIKE ?", ('%' + query + '%', query + '%'))
+# results = cursor.fetchall()
+# print(results[0][0])
 
 # cursor.execute("DELETE FROM contacts")
 conn.commit()

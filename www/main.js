@@ -62,4 +62,50 @@ $(document).ready(function () {
         }
     }
     document.addEventListener('keyup', DocKeyUp , false);
+
+    // Creating function for chat feature
+
+    function PlayAssistant (message) { 
+        if (message != ""){
+            $("#Oval").attr("hidden", true );
+            $("#SiriWave").attr("hidden", false );
+            eel.AllCommands(message);
+            $("#Chatbox").val("");
+            $("#MicBtn").attr("hidden", false );
+            $("#SendBtn").attr("hidden", true );
+
+        }
+    }
+
+    function ShowHideBtn (message) {
+        if(message.length == 0){
+            $("#MicBtn").attr("hidden", false );
+            $("#SendBtn").attr("hidden", true );
+        }
+        else{
+            $("#MicBtn").attr("hidden", true );
+            $("#SendBtn").attr("hidden", false );
+        }
+    }
+    $("#Chatbox").keyup(function () {
+        let message =  $("#Chatbox").val();
+        ShowHideBtn(message) 
+    });
+    $("#SendBtn").click(function () { 
+
+        let message =  $("#Chatbox").val();
+        PlayAssistant(message)
+        
+    });
+
+    // Adding the function to also accept message from enter key.
+    $("#Chatbox").keypress(function (e) { 
+        key = e.which;
+        if ( key == 13 ){
+            let message =  $("#Chatbox").val();
+            PlayAssistant(message)
+        }
+        
+    });
 });
+
