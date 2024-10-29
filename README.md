@@ -44,7 +44,7 @@ CortexX is an advanced AI model designed to interact with users via voice and te
 1. **Installation**:
    - Clone the repository:  
      ```bash
-     git clone https://github.com/yourusername/CortexX.git
+     git clone https://github.com/ayush-270/CortixX-AI-Model
      ```
    - Navigate to the project directory:  
      ```bash
@@ -72,10 +72,5 @@ CortexX is an advanced AI model designed to interact with users via voice and te
 
 Contributions are welcome! Feel free to submit a pull request or open an issue for any suggestions or improvements.
 
-## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-For further inquiries or support, please contact [your-email@example.com]. Enjoy using CortexX!
+For further inquiries or support, please contact [ayush27.work@gmail.com]. Enjoy using CortexX!
