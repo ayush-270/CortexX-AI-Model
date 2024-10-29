@@ -14,6 +14,7 @@ import pyaudio
 from engine.command import *
 from engine.command import speak
 from engine.helper import extract_yt_term, remove_words
+from hugchat import hugchat
 
 
 # connecting to db  
@@ -173,3 +174,16 @@ def whatsApp(mobile_no, message, flag, name):
 
     autogui.hotkey('enter')
     speak(cortex_message)
+
+
+# Creating function for chatbot
+
+def chatBot(query):
+    user_input = query.lower()
+    chatbot = hugchat.ChatBot(cookie_path = "engine\\cookies.json")
+    id = chatbot.new_conversation()
+    chatbot.change_conversation(id)
+    response = chatbot.chat(user_input)
+    print(response)
+    speak(response)
+    return response

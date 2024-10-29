@@ -1,2 +1,6 @@
 /envCortexX
 /contacts.csv
+cortex.db
+/engine/__pycache__
+/engine/cookies.json
+

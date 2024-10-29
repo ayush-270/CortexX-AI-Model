@@ -8,6 +8,7 @@ import time
 
 # Creating the function to make the assistant speak
 def speak(text):
+    text = str(text)
     #initiating the voices
     engine = pyttsx3.init("sapi5")
 
@@ -73,6 +74,7 @@ def AllCommands(message=1):
     # if it is passed assigning to the variable query1 for execution.
     else:
         query1 = message
+        eel.DisplayMessage(query1)
 
         #Displaying the query in chatbox
         eel.senderText(query1)
@@ -106,7 +108,8 @@ def AllCommands(message=1):
 
 
         else:
-            print("not running")
+            from engine.features import chatBot
+            chatBot(query1)
 
     except:
         print("error")
