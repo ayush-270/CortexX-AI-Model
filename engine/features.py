@@ -144,12 +144,12 @@ def whatsApp(mobile_no, message, flag, name):
         cortex_message = "message sent successfully to "+name
 
     elif flag == 'call':
-        target_tab = 7
+        target_tab = 6
         message = ''
         cortex_message = "calling to "+name
 
     else:
-        target_tab = 6
+        target_tab = 5
         message = ''
         cortex_message = "staring video call with "+name
 
@@ -187,3 +187,36 @@ def chatBot(query):
     print(response)
     speak(response)
     return response
+
+# Android Automation
+# function to make a phone call
+def makeCall(name, mobileNo):
+    mobileNo = mobileNo.replace(" "," ")
+    speak("Calling "+name)
+    command = 'adb shell am start -a android.intent.action.CALL -d tel:'+mobileNo
+    os.system(command)
+
+# function to send message
+def sendMessage(message, mobileNo, name):
+    from engine.helper import replace_spaces_with_percent_s, goback, keyEvent, tapEvents, adbInput
+    message = replace_spaces_with_percent_s(message)
+    mobileNo = replace_spaces_with_percent_s(mobileNo)
+    speak("sending message")
+    goback(4)
+    time.sleep(1)
+    keyEvent(3)
+    # open sms app
+    tapEvents(320, 2220)
+    #start chat
+    tapEvents(800, 2195)
+    # search mobile no
+    adbInput(mobileNo)
+    #tap on name
+    tapEvents(601, 574)
+    # tap on input
+    tapEvents(390, 2270)
+    #message
+    adbInput(message)
+    #send
+    tapEvents(957, 1630)# 1397
+    speak("message sent successfully to "+name)

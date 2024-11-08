@@ -78,6 +78,9 @@ def AllCommands(message=1):
 
         #Displaying the query in chatbox
         eel.senderText(query1)
+
+        # from engine.features import chatBot
+        # chatBot(query1)
     try:
 
         if "open" in query1:
@@ -89,22 +92,35 @@ def AllCommands(message=1):
             PlayYoutube(query1)
 
         elif "send message" in query1 or "phone call" in query1 or "video call" in query1:
-            from engine.features import findContact, whatsApp
-            flag = ""
+            from engine.features import findContact, whatsApp, makeCall, sendMessage
             contact_no, name = findContact(query1)
             if(contact_no != 0):
+                speak("Which mode you want to use whatsapp or mobile")
+                preferance = TakeCommand()
+                print(preferance)
 
-                if "send message" in query1:
-                    flag = 'message'
-                    speak("what message to send")
-                    query1 = TakeCommand()
-                    
-                elif "phone call" in query1:
-                    flag = 'call'
-                else:
-                    flag = 'video call'
-                    
-                whatsApp(contact_no, query1, flag, name)
+                if "mobile" in preferance:
+                    if "send message" in query1 or "send sms" in query1: 
+                        speak("what message to send")
+                        message = TakeCommand()
+                        sendMessage(message, contact_no, name)
+                    elif "phone call" in query1:
+                        makeCall(name, contact_no)
+                    else:
+                        speak("please try again")
+                elif "whatsapp" in preferance:
+                    message = ""
+                    if "send message" in query1:
+                        flag = 'message'
+                        speak("what message to send")
+                        query = TakeCommand()
+                                        
+                    elif "phone call" in query1:
+                        flag = 'call'
+                    else:
+                        flag = 'video call'
+                                        
+                    whatsApp(contact_no, query1, flag, name)
 
 
         else:

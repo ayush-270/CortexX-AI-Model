@@ -7,18 +7,28 @@ cursor = conn.cursor()
 
 # Creating a table Sys_command
 
-#query = "CREATE TABLE IF NOT EXISTS sys_command(id integer primary key,name VARCHAR(100),path VARCHAR(1000))"
-#cursor.execute(query)
+# query = "CREATE TABLE IF NOT EXISTS sys_command(id integer primary key,name VARCHAR(100),path VARCHAR(1000))"
+# cursor.execute(query)
 
 # Creating a table web_command
 
-#query = "CREATE TABLE IF NOT EXISTS web_command(id integer primary key,name VARCHAR(100),path VARCHAR(1000))"
-#cursor.execute(query)
+# query = "CREATE TABLE IF NOT EXISTS web_command(id integer primary key,name VARCHAR(100),path VARCHAR(1000))"
+# cursor.execute(query)
 
-query = "INSERT INTO sys_command VALUES (NULL, 'notepad', 'C:\\Windows\\system32\\notepad.exe')"
-cursor.execute(query)
+# query = "INSERT INTO sys_command VALUES (NULL, 'notepad', 'C:\\Windows\\system32\\notepad.exe')"
+# cursor.execute(query)
 
-# query = "INSERT INTO web_command VALUES (NULL, 'Facebook', 'https://www.facebook.com/')"
+# query = "INSERT INTO sys_command VALUES (NULL, 'spotify', 'C:\\Users\\hp\\AppData\\Roaming\\Spotify\\Spotify.exe')"
+# cursor.execute(query)
+
+# query = "INSERT INTO sys_command VALUES (NULL, 'vs code', 'C:\\Users\\hp\\AppData\\Local\\Programs\\Microsoft VS Code\\code.exe')"
+# cursor.execute(query)
+
+# query = "INSERT INTO sys_command VALUES (NULL, 'excel', 'C:\\Program Files\\Microsoft Office\\root\\Office16\\XLICONS.exe')"
+# cursor.execute(query)
+
+
+# query = "INSERT INTO web_command VALUES (NULL, 'github', 'https://github.com/')"
 # cursor.execute(query)
 
 
@@ -55,6 +65,3 @@ desired_columns_indices = [0, 18]
 # cursor.execute("SELECT mobile_no FROM contacts WHERE LOWER(name) LIKE ? OR LOWER(name) LIKE ?", ('%' + query + '%', query + '%'))
 # results = cursor.fetchall()
 # print(results[0][0])
-
-# cursor.execute("DELETE FROM contacts")
-conn.commit()
