@@ -220,3 +220,10 @@ def sendMessage(message, mobileNo, name):
     #send
     tapEvents(957, 1630)# 1397
     speak("message sent successfully to "+name)
+
+
+
+# adb shell am start -a android.intent.action.CALL -d tel:+91
+# adb shell input tap 136 2220
+# adb shell input text "Ayush%sis%making%sproject"
+# adb shell input keyevent 3

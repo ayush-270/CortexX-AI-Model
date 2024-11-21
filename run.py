@@ -22,7 +22,6 @@ if __name__ == "__main__":
     p1 = multiprocessing.Process(target=StartCortex)
     p2 = multiprocessing.Process(target=listenHotWord)
     p1.start()
-    subprocess.call([r'device.bat'])
     p2.start()
     p1.join()
   
@@ -33,8 +32,3 @@ if __name__ == "__main__":
     print("System stop")
 
 
-
-# adb shell am start -a android.intent.action.CALL -d tel:+917988168548
-# adb shell input tap 136 2220
-# adb shell input text "Ayush%sis%making%sproject"
-# adb shell input keyevent 3
