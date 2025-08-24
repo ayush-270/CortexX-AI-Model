@@ -13,6 +13,10 @@ __pycache__/
 # Database & local files
 cortex.db
 contacts.csv
+<<<<<<< HEAD
+=======
+
+>>>>>>> 945486e (`Update .gitignore to ignore engine/api.env and add it to the list of ignored files. Update load_dotenv() in engine/features.py to load from engine/api.env instead of the default location.`)
 
 # API keys & environment files
 engine/api.env
@@ -23,3 +27,10 @@ Thumbs.db
 
 # VS Code settings
 .vscode/
+<<<<<<< HEAD
+=======
+.idea/
+
+*.env
+engine/api.env
+>>>>>>> 945486e (`Update .gitignore to ignore engine/api.env and add it to the list of ignored files. Update load_dotenv() in engine/features.py to load from engine/api.env instead of the default location.`)

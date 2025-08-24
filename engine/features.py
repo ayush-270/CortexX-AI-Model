@@ -178,6 +178,27 @@ def whatsApp(mobile_no, message, flag, name):
 
 # Creating function for chatbot
 
+<<<<<<< HEAD
+=======
+# def chatBot(query):
+#     user_input = query.lower()
+#     chatbot = hugchat.ChatBot(cookie_path = "engine\\cookies.json")
+#     id = chatbot.new_conversation()
+#     chatbot.change_conversation(id)
+#     response = chatbot.chat(user_input)
+#     print(response)
+#     speak(response)
+#     return response
+
+
+
+# Setting up API key
+
+load_dotenv("engine/api.env")
+
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+
+>>>>>>> 945486e (`Update .gitignore to ignore engine/api.env and add it to the list of ignored files. Update load_dotenv() in engine/features.py to load from engine/api.env instead of the default location.`)
 def chatBot(query):
     user_input = query.lower()
     chatbot = hugchat.ChatBot(cookie_path = "engine\\cookies.json")
