@@ -61,10 +61,12 @@ def AuthenticateFace():
                 id = names[id]
                 accuracy = "  {0}%".format(round(100 - accuracy))
                 flag = 1
+                print("Face Recognised")
             else:
                 id = "unknown"
                 accuracy = "  {0}%".format(round(100 - accuracy))
                 flag = 0
+                print("Face Not Recognised")
 
             cv2.putText(img, str(id), (x+5, y-5), font, 1, (255, 255, 255), 2)
             cv2.putText(img, str(accuracy), (x+5, y+h-5),
@@ -75,9 +77,8 @@ def AuthenticateFace():
         k = cv2.waitKey(10) & 0xff  # Press 'ESC' for exiting video
         if k == 27:
             break
-        # if flag == 1:
-        #     break
-        # break
+        if flag == 1:
+            break
             
 
     # Do a bit of cleanup
@@ -85,4 +86,12 @@ def AuthenticateFace():
     cam.release()
     cv2.destroyAllWindows()
     return flag
-AuthenticateFace()
+
+# AuthenticateFace()
+def run_auth():
+    return AuthenticateFace() 
+
+
+if __name__ == "__main__":
+    result = run_auth()
+    print("Result from run_auth:", result)

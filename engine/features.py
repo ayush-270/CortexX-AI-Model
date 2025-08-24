@@ -15,7 +15,8 @@ from engine.command import *
 from engine.command import speak
 from engine.helper import extract_yt_term, remove_words
 from hugchat import hugchat
-
+from groq import Groq
+from dotenv import load_dotenv
 
 # connecting to db  
 conn = sqlite3.connect("cortex.db")
@@ -178,8 +179,7 @@ def whatsApp(mobile_no, message, flag, name):
 
 # Creating function for chatbot
 
-<<<<<<< HEAD
-=======
+
 # def chatBot(query):
 #     user_input = query.lower()
 #     chatbot = hugchat.ChatBot(cookie_path = "engine\\cookies.json")
@@ -198,16 +198,22 @@ load_dotenv("engine/api.env")
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
->>>>>>> 945486e (`Update .gitignore to ignore engine/api.env and add it to the list of ignored files. Update load_dotenv() in engine/features.py to load from engine/api.env instead of the default location.`)
+
 def chatBot(query):
-    user_input = query.lower()
-    chatbot = hugchat.ChatBot(cookie_path = "engine\\cookies.json")
-    id = chatbot.new_conversation()
-    chatbot.change_conversation(id)
-    response = chatbot.chat(user_input)
-    print(response)
-    speak(response)
-    return response
+    try:
+        response = client.chat.completions.create(
+            model="llama3-8b-8192",   
+            messages=[{"role": "user", "content": query}],
+            max_tokens=200
+        )
+        answer = response.choices[0].message.content
+        print("🤖 CortexX:", answer)
+        speak(answer)
+        return answer
+    except Exception as e:
+        print("⚠️ Error in chatBot:", str(e))
+        speak("Sorry, I couldn’t fetch an answer right now.")
+        return None
 
 # Android Automation
 # function to make a phone call

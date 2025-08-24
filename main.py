@@ -2,8 +2,8 @@ import os
 import eel
 from engine.features import *
 from engine.command import *
+from engine.auth.recognise import run_auth
 from engine.auth import recognise
-
 def start () :
     eel.init("www")
 
@@ -16,7 +16,7 @@ def start () :
         # subprocess.call([r'device.bat'])
         eel.hideLoader()
         speak("Ready for face authentication")
-        flag = recognise.AuthenticateFace()
+        flag = run_auth()
         if flag == 1:
             eel.hideFaceAuth()
             speak("Face Authentication Successfull")
