@@ -1,6 +1,25 @@
-/envCortexX
-/contacts.csv
-cortex.db
-/engine/__pycache__
-/engine/cookies.json
+# Virtual environments
+.venv/
+venv/
+env/
+envCortexX/
 
+# Python cache & compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Database & local files
+cortex.db
+contacts.csv
+
+# API keys & environment files
+engine/api.env
+
+# OS/system files
+.DS_Store
+Thumbs.db
+
+# VS Code settings
+.vscode/
